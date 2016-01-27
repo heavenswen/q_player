@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>音乐播放器</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"  />
+	</head>
+	<body>
+		<audio id="muise" controls="controls">
+			<source src=""></source>
+		</audio><br  />
+		<button id="show">show</button>
+		<button id="start">start</button>
+		<button id="stop">stop</button>
+		<button id="prev">prev</button>
+		<button id="next">next</button>
+		<button id="loop">loop</button>
+		<button id="add">add</button>
+		<button id="clear">clear</button>
+		
+		<script src="//cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+		<script src="q.media.js"></script>
+		<script>
+$(function(){
+	song_list = [
+"http://222.186.30.212:8082/demo_store/2015/12/04/37918c41db7ef18a0ef1777ece2e4bb7.mp3",			
+'http://222.186.30.212:8081/demo_store/2015/06/02/3a7502991e20358476ff07395dbe90dc.mp3',
+"http://222.186.30.212:8082/demo_store/2015/11/24/67babe80407f1c2aa0d0113643e75870.mp3"
+	
+]
+	var muise = new q_media('muise',song_list);
+	//开始播放
+	$("#start").click(function(){
+		muise.start();
+	})
+	//停止
+	$("#stop").click(function(){
+		muise.stop();
+	})
+	//"obj":id,"index":曲目,"src":链接,"current":_song.currentTime,"paused":停止状态,"net":网络情况
+	$("#show").on("click",function(){
+		console.log(muise.show())
+	})
+	//下一曲
+	$("#prev").click(function(){
+		muise.prev();
+	})
+	//上一曲
+	$("#next").click(function(){
+		muise.next();
+	})
+	//快进
+	$("#add").click(function(){
+		muise.current(1000);
+	})
+	//后退
+	$("#clear").click(function(){
+		muise.current(-1000);
+	})
+
+})
+	//部分文件不支持快进和后退
+	//初始化传入一个播放器id和音频列表
+		</script>
+	</body>
+</html>
